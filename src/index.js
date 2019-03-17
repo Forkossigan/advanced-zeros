@@ -31,11 +31,11 @@ module.exports = function getZerosCount(number, base) {
       var deg = 1;
       var sumzero = 0;
       if(numberRow[nnr] == 1){continue};
-      while(p>z){
+      while(p>=z){
         y=p/z;
         y = Math.floor(y);
         sumzero+=y;
-        z=z*z;
+        z=z*nomberRow[nnr];
       }
       for(var k=nnr;k<length;k++){
         if (numberRow[nnr] == numberRow[k+1]){
