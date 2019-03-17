@@ -1,31 +1,52 @@
 module.exports = function getZerosCount(number, base) {
   
-  let maxPower = 0, count = 0;
-  let zerosCount = Infinity;
-  let intermediateBase = base;
-  let intermediateNumber;
+  simpleNumbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43,
 
-    for(let i = 2; i <= base; i++){ 
-      if(intermediateBase % i == 0){
+    47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101,
+    
+    103, 107, 109, 113, 127, 131, 137, 139, 149, 151,
+    
+    157, 163, 167, 173, 179, 181, 191, 193, 197, 199,
+    
+    211,	223,	227,	229, 233,	239,	241,	251]
+    var numberRow = [];
+    var yetBase = base;
+    var sumzeroArray=[];
 
-        maxPower = 0;
-        while(intermediateBase % i == 0){ 
-          maxPower++; 
-          intermediateBase = Math.floor(intermediateBase/i); 
-      }
 
-      count = 0;
-        intermediateNumber = number;
-        while (intermediateNumber/i > 0){
-          count+=Math.floor(intermediateNumber/i);
-          intermediateNumber = Math.floor(intermediateNumber/i);
-      }
-      
-      if(zerosCount > count/maxPower){ 
-        zerosCount=count/maxPower;
-      } 
+    for(var j=0; j<1000; j++ ){
+    
+      if(yetBase%simpleNumbers[j]){continue};
+      yetBase = yetBase/simpleNumbers[j];
+      numberRow.push(simpleNumbers[j]);
+      if(yetBase == 1 ){break};
+      j= -1;
+
     }
-  }
-  return Math.floor(zerosCount); 
+    var length = numberRow.length;
+    for(var nnr = 0; nnr < length; nnr++){
+      var p = number;
+      var z = numberRow[nnr];
+      var y = 0;
+      var deg = 1;
+      var sumzero = 0;
+      if(numberRow[nnr] == 1){continue};
+      while(p>z){
+        y=p/z;
+        y = Math.floor(y);
+        sumzero+=y;
+        z=z*z;
+      }
+      for(var k=nnr;k<length;k++){
+        if (numberRow[nnr] == numberRow[k+1]){
+          deg = deg + 1;
+          numberRow[k+1] = 1;
+        }
+      }
+      sumzero = sumzero/deg;
+      sumzeroArray.push(sumzero);
+
+    }
+return Math.min.apply(null, sumzeroArray);
 }
   
