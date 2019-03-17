@@ -35,7 +35,7 @@ module.exports = function getZerosCount(number, base) {
         y=p/z;
         y = Math.floor(y);
         sumzero+=y;
-        z=z*nomberRow[nnr];
+        z=z*numberRow[nnr];
       }
       for(var k=nnr;k<length;k++){
         if (numberRow[nnr] == numberRow[k+1]){
