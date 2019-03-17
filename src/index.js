@@ -44,6 +44,8 @@ module.exports = function getZerosCount(number, base) {
         }
       }
       sumzero = sumzero/deg;
+      sumzero = Math.floor(sumzero);
+
       sumzeroArray.push(sumzero);
 
     }
